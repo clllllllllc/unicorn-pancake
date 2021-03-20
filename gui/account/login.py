@@ -1,8 +1,9 @@
 import tkinter as tk
 from tkinter import font as tkfont
+from tkinter import messagebox
 from PIL import Image
 from PIL import ImageTk
-
+from db.check_account import check_account
 
 class Login(tk.Frame):
 
@@ -41,10 +42,24 @@ class Login(tk.Frame):
         self.login_canvas.create_window(posx + 230, posy + 280, height=50, width=500, window=self.password_e,
                                         anchor="nw")
 
-        self.login_b = tk.Button(self.login_canvas, text="LOGIN")
+        self.login_b = tk.Button(self.login_canvas, text="LOGIN", command=self.check)
         self.login_canvas.create_window(posx + 280, posy + 450, height=50, width=100, window=self.login_b,
                                         anchor="nw")
 
         self.back_b = tk.Button(self.login_canvas, text="Back", command=lambda: controller.show_frame("Menu"))
         self.login_canvas.create_window(50, 50, height=30, width=80, window=self.back_b,
                                         anchor="nw")
+
+    def check(self):
+
+        username = self.username_e.get()
+        password = self.password_e.get()
+
+        if username == "" or password == "":
+            messagebox.showwarning(title="NONONO", message="PLEASE DO NOT LEAVE ANY FIELDS EMPTY")
+            return
+
+        if check_account(username, password):
+            messagebox.showinfo(title="YEP", message="LOGIN SUCCESSFUL BUT THERE IS NOTHING AHEAD")
+        else:
+            messagebox.showinfo(title="NONONO", message="USERNAME OR PASSWORD INCORRECT")

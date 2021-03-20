@@ -1,8 +1,10 @@
 import tkinter as tk
 from tkinter import font as tkfont
+from tkinter import messagebox
 from PIL import Image
 from PIL import ImageTk
 import gui.account.verifier as verify
+from db.new_account import create_account
 
 
 class SignUp(tk.Frame):
@@ -65,7 +67,7 @@ class SignUp(tk.Frame):
         self.login_canvas.create_window(posx + 230, posyl2[5], height=50, width=500, window=self.emailv_e,
                                         anchor="nw")
 
-        self.send_verify = tk.Button(self.login_canvas, text="Back", command=verify_email)
+        self.send_verify = tk.Button(self.login_canvas, text="Back", command=self.verify_email)
         self.login_canvas.create_window(posx + 20, posyl[5] + 60, height=30, width=80, window=self.send_verify,
                                         anchor="nw")
 
@@ -73,9 +75,38 @@ class SignUp(tk.Frame):
         self.login_canvas.create_window(50, 50, height=30, width=80, window=self.back_b,
                                         anchor="nw")
 
-        self.login_b = tk.Button(self.login_canvas, text="LOGIN")
+        self.login_b = tk.Button(self.login_canvas, text="LOGIN", command=self.new_account)
         self.login_canvas.create_window(posx + 280, posy + 450, height=50, width=100, window=self.login_b,
                                         anchor="nw")
 
     def verify_email(self):
         pass
+
+    def new_account(self):
+        username = self.username_e.get()
+        password = self.password_e.get()
+        password_re = self.repassword_e.get()
+        email = self.email_e.get()
+        avatar = self.an_e.get()
+
+        if username == "" or password == "" or password_re == "" or email == "" or avatar == "":
+            messagebox.showwarning(title="NONONO", message="PLEASE DO NOT LEAVE ANY FIELDS EMPTY")
+            return
+
+        if password != password_re:
+            messagebox.showwarning(title="NONONO", message="PLEASE ENSURE BOTH PASSWORDS ENTERED ARE THE SAME")
+            return
+
+        try:
+            create_account(username, password, email, avatar)
+        except sqlite3.IntegrityError:
+            messagebox.showwarning(title="NONONO", message="USERNAME ALREADY EXIST")
+            return
+
+        self.username_e.delete(0, tk.END)
+        self.password_e.delete(0, tk.END)
+        self.repassword_e.delete(0, tk.END)
+        self.email_e.delete(0, tk.END)
+        self.an_e.delete(0, tk.END)
+        self.emailv_e.delete(0, tk.END)
+        self.controller.show_frame("Menu")
