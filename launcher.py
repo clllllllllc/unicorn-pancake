@@ -3,6 +3,8 @@ from gui.account.menu import Menu
 from gui.account.login import Login
 from db import db
 
+version = "0.0.2"
+
 db.build()
 app = Operation()
 app.mainloop()
