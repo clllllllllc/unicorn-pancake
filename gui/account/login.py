@@ -5,6 +5,7 @@ from PIL import Image
 from PIL import ImageTk
 from db.check_account import check_account
 
+
 class Login(tk.Frame):
 
     def __init__(self, parent, controller):
@@ -60,6 +61,7 @@ class Login(tk.Frame):
             return
 
         if check_account(username, password):
-            messagebox.showinfo(title="YEP", message="LOGIN SUCCESSFUL BUT THERE IS NOTHING AHEAD")
+            messagebox.showinfo(title="YEP", message="LOGIN SUCCESSFUL BUT THERE IS SOMETHING AHEAD NOW")
+            self.controller.show_frame("Item")
         else:
             messagebox.showinfo(title="NONONO", message="USERNAME OR PASSWORD INCORRECT")

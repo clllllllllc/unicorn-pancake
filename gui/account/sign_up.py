@@ -99,7 +99,7 @@ class SignUp(tk.Frame):
 
         try:
             create_account(username, password, email, avatar)
-        except sqlite3.IntegrityError:
+        except:
             messagebox.showwarning(title="NONONO", message="USERNAME ALREADY EXIST")
             return
 
