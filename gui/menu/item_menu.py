@@ -4,6 +4,7 @@ from tkinter import messagebox
 from PIL import Image
 from PIL import ImageTk
 from db.check_account import check_account
+from com.client_message import start_chat
 
 
 class Item(tk.Frame):
@@ -21,6 +22,13 @@ class Item(tk.Frame):
         self.menu_canvas.create_image(0, 0, image=self.menu_picture, anchor='nw')
         self.menu_canvas.create_text(820, 100, text="MAIN MENU", font=controller.title_font)
 
+        self.join_chat = tk.Button(self.menu_canvas, text="Join Chat Sever", command=self.chat_start)
+        self.menu_canvas.create_window(200, 200, height=50, width=130, window=self.join_chat,
+                                       anchor="nw")
+
         self.logout_b = tk.Button(self.menu_canvas, text="Log Out", command=lambda: controller.show_frame("Menu"))
         self.menu_canvas.create_window(50, 50, height=30, width=80, window=self.logout_b,
                                        anchor="nw")
+
+    def chat_start(self):
+        self.controller.show_frame("Chat")

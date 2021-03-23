@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS account_data (
-	Username TEXT PRIMARY KEY,
+	Username VARCHAR(32) PRIMARY KEY,
 	Password TEXT,
 	Email TEXT,
 	AvatarName TEXT,

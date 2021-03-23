@@ -6,6 +6,7 @@ from gui.account.menu import Menu
 from gui.account.login import Login
 from gui.account.sign_up import SignUp
 from gui.menu.item_menu import Item
+from gui.menu.chat import Chat
 
 
 class Operation(tk.Tk):
@@ -22,7 +23,7 @@ class Operation(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        for F in (Menu, Login, SignUp, Item):
+        for F in (Menu, Login, SignUp, Item, Chat):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
