@@ -36,17 +36,20 @@ class Chat(tk.Frame):
         scrollbar.config(command=self.textCons.yview)
         self.textCons.config(state=tk.DISABLED)
 
-        host = '127.0.0.1'
-        port = 55554
+        try:
+            host = '127.0.0.1'
+            port = 55554
 
-        self.nickname = "Text Holder"
+            self.nickname = "Default name"
 
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.client.connect((host, port))
-        receive_thread = threading.Thread(target=self.receive)
-        receive_thread.start()
-        # write_thread = threading.Thread(target=write)
-        # write_thread.start()
+            self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            self.client.connect((host, port))
+            receive_thread = threading.Thread(target=self.receive)
+            receive_thread.start()
+            # write_thread = threading.Thread(target=write)
+            # write_thread.start()
+        except:
+            pass
 
     def receive(self):
         while True:

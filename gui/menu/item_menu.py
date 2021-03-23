@@ -23,7 +23,7 @@ class Item(tk.Frame):
         self.menu_canvas.create_text(820, 100, text="MAIN MENU", font=controller.title_font)
 
         self.join_chat = tk.Button(self.menu_canvas, text="Join Chat Sever", command=self.chat_start)
-        self.menu_canvas.create_window(200, 200, height=50, width=130, window=self.join_chat,
+        self.menu_canvas.create_window(500, 350, height=50, width=130, window=self.join_chat,
                                        anchor="nw")
 
         self.logout_b = tk.Button(self.menu_canvas, text="Log Out", command=lambda: controller.show_frame("Menu"))
