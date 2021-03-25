@@ -62,6 +62,10 @@ class Login(tk.Frame):
 
         if check_account(username, password):
             messagebox.showinfo(title="YEP", message="LOGIN SUCCESSFUL BUT THERE IS SOMETHING AHEAD NOW")
+
+            self.controller.username = username
+            self.controller.password = password
+
             self.controller.show_frame("Item")
         else:
             messagebox.showinfo(title="NONONO", message="USERNAME OR PASSWORD INCORRECT")

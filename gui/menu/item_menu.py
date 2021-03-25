@@ -25,10 +25,21 @@ class Item(tk.Frame):
         self.join_chat = tk.Button(self.menu_canvas, text="Join Chat Sever", command=self.chat_start)
         self.menu_canvas.create_window(500, 350, height=50, width=130, window=self.join_chat,
                                        anchor="nw")
+        self.account_info = tk.Button(self.menu_canvas, text="Join Chat Sever", command=self.chat_start)
+        self.menu_canvas.create_window(500, 350, height=50, width=130, window=self.account_info,
+                                       anchor="nw")
 
-        self.logout_b = tk.Button(self.menu_canvas, text="Log Out", command=lambda: controller.show_frame("Menu"))
+        self.logout_b = tk.Button(self.menu_canvas, text="Log Out", command=self.logout)
         self.menu_canvas.create_window(50, 50, height=30, width=80, window=self.logout_b,
                                        anchor="nw")
 
     def chat_start(self):
         self.controller.show_frame("Chat")
+
+    def account_menu(self):
+        self.controller.show_frame("Account")
+
+    def logout(self):
+        self.controller.username = ''
+        self.controller.password = ''
+        controller.show_frame("Menu")

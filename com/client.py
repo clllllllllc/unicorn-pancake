@@ -1,7 +1,7 @@
 import threading
 import socket
 
-host = '127.0.0.1'
+host = '10.173.16.225'
 port = 55554
 
 nickname = input("Please Enter Nickname: ")

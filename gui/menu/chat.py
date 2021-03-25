@@ -37,10 +37,10 @@ class Chat(tk.Frame):
         self.textCons.config(state=tk.DISABLED)
 
         try:
-            host = '127.0.0.1'
+            host = '10.173.16.225'
             port = 55554
 
-            self.nickname = "Default name"
+            self.nickname = self.controller.username
 
             self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             self.client.connect((host, port))
@@ -76,3 +76,8 @@ class Chat(tk.Frame):
             entryf.delete(0, tk.END)
         except:
             pass
+
+    def logout(self):
+        self.controller.username = ''
+        self.controller.password = ''
+        controller.show_frame("Menu")

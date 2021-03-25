@@ -7,6 +7,7 @@ from gui.account.login import Login
 from gui.account.sign_up import SignUp
 from gui.menu.item_menu import Item
 from gui.menu.chat import Chat
+from gui.menu.account import Account
 
 
 class Operation(tk.Tk):
@@ -16,6 +17,9 @@ class Operation(tk.Tk):
         self.title_font = tkfont.Font(family='Helvetica', size=128, weight="bold", slant="italic")
         self.normal_font = tkfont.Font(family='Helvetica', size=24, weight="bold", slant="italic")
         self.entry_font = tkfont.Font(family='Helvetica', size=20)
+
+        self.username = ''
+        self.password = ''
         # self.transparent_bg = tk.PhotoImage(file='./images/nothing.png')
         self.geometry("1680x1050")
         container = tk.Frame(self, height=1050, width=1680)
@@ -23,7 +27,7 @@ class Operation(tk.Tk):
         container.grid_rowconfigure(0, weight=1)
         container.grid_columnconfigure(0, weight=1)
         self.frames = {}
-        for F in (Menu, Login, SignUp, Item, Chat):
+        for F in (Menu, Login, SignUp, Item, Chat, Account):
             page_name = F.__name__
             frame = F(parent=container, controller=self)
             self.frames[page_name] = frame
