@@ -33,9 +33,13 @@ class Chat(tk.Frame):
         self.textCons = tk.Text(self.menu_canvas, yscrollcommand=scrollbar.set)
         self.menu_canvas.create_window(0, 150, height=750, width=1680, window=self.textCons, anchor="nw")
 
-        scrollbar.config(command=self.textCons.yview)
-        self.textCons.config(state=tk.DISABLED)
+        self.exit_b = tk.Button(self.menu_canvas, text="Exit Chat", command=self.exit_chat)
+        self.menu_canvas.create_window(50, 50, height=30, width=80, window=self.exit_b,
+                                       anchor="nw")
 
+        scrollbar.config(command=self.textCons.yview)
+        self.textCons.config(state=tk.DISABLED) \
+ \
         try:
             host = '10.173.16.225'
             port = 55554
@@ -50,6 +54,9 @@ class Chat(tk.Frame):
             # write_thread.start()
         except:
             pass
+
+    def exit_chat(self):
+        self.controller.show_frame("Item")
 
     def receive(self):
         while True:

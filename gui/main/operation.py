@@ -10,6 +10,9 @@ from gui.menu.chat import Chat
 from gui.menu.account import Account
 
 
+# Function: Create application
+# Input: Nothing
+# Output: Nothing
 class Operation(tk.Tk):
 
     def __init__(self, *args, **kwargs):
@@ -34,6 +37,9 @@ class Operation(tk.Tk):
             frame.grid(row=0, column=0, sticky="nsew")
         self.show_frame("Menu")
 
+    # Function: display frames/pages of the app
+    # Input: String, The name of the page
+    # Output: Nothing
     def show_frame(self, page_name):
         frame = self.frames[page_name]
         frame.tkraise()

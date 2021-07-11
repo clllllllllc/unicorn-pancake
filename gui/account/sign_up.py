@@ -110,3 +110,4 @@ class SignUp(tk.Frame):
         self.an_e.delete(0, tk.END)
         self.emailv_e.delete(0, tk.END)
         self.controller.show_frame("Menu")
+
